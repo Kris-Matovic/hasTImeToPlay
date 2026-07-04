@@ -53,6 +53,7 @@ html, body {
   color: #ffffff;
   padding: 2rem;
   box-sizing: border-box;
+  pointer-events: none; 
 }
 
 .content h1 {
