@@ -1,8 +1,10 @@
 html, body {
   margin: 0;
-  height: 100%;
   background: #171C12;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
   overflow-x: hidden;
 }
 
@@ -11,25 +13,25 @@ html, body {
   inset: 0;
   z-index: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 66px);
-  grid-template-rows: repeat(auto-fill, 66px);
+  grid-template-columns: repeat(auto-fill, 36px);
+  grid-template-rows: repeat(auto-fill, 36px);
   justify-content: center;
   align-content: center;
 }
 
 .line-cell {
-  width: 66px;
-  height: 66px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .line {
-  width: 4px;
-  height: 53px;
-  background: #2DBD6E;
-  border-radius: 2px;
+  width: 2px;
+  height: 24px;
+  background: #1D462F;
+  border-radius: 0%;
   transform-origin: center;
   transform: rotate(0deg);
   /* easeInOutBack-style overshoot: bounces past target on the way in AND back */
@@ -38,19 +40,34 @@ html, body {
 
 .line.rotated {
   transform: rotate(90deg);
+  background: #2DBD6E;
 }
 
 /* Real page content sits above the background grid */
+
+#home {
+  
+}
+
+#about {
+  min-height: 60vh;
+  background: #171C12;
+}
+
+#work {
+  min-height: 36vh;
+  background: #d2cbba;
+}
+
 .content {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #ffffff;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
   padding: 2rem;
   box-sizing: border-box;
   pointer-events: none; 
@@ -62,6 +79,119 @@ html, body {
 }
 
 .content p {
-  color: #cfd8c9;
+  color: #e4e1da;
   max-width: 480px;
+}
+
+.heading {
+  font-family: 'Google Sans Flex';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 50px;
+  /* or 100% */
+  display: flex;
+  align-items: flex-end;
+  color: #d2cbba;
+}
+
+.pull-out {
+  font-family: 'Google Sans Flex';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 30px;
+  /* or 100% */
+  display: flex;
+  align-items: flex-end;
+  color: #1D462F;
+}
+
+.body-text {
+  font-family: 'Google Sans Flex';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  /* or 100% */
+  display: flex;
+  align-items: flex-end;
+  color: #d2cbba;
+}
+
+.body-serif {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #d2cbba;
+  margin-bottom: 8rem;
+}
+
+.display-text {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 82px;
+  color: #d2cbba;
+  margin-bottom: 0rem;
+}
+
+.section {
+  min-height: 100vh;   /* each section takes at least one full screen */
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  pointer-events: none; 
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two equal columns */
+  gap: 2rem;
+}
+
+/* button */
+
+.cta-button {
+  margin-top: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  width: 140px;
+  height: 60px;
+  border: 2px solid#1D462F;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  pointer-events: auto;   /* required since parent sections have pointer-events: none */
+  background: transparent;
+  transition: background 0.3s ease, border-style 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #1D462F;
+  border-style: solid;
+  transform: scale(1.05);
+}
+
+.cta-text {
+  font-family: 'Google Sans Flex';
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  text-align: center;
+  color: #1D462F;
+}
+
+.cta-button:hover .cta-text {
+  color: #d2cbba; /* dark text once the button fills with purple, for contrast */
 }
