@@ -46,17 +46,28 @@ html {
 /* Real page content sits above the background grid */
 
 #home {
-  
+  min-height: 100vh;
 }
 
 #about {
-  min-height: 60vh;
+  min-height: 40vh;
   background: #171C12;
 }
 
 #work {
-  min-height: 36vh;
+  min-height: 40vh;
   background: #d2cbba;
+}
+
+#cta-section {
+  min-height: 40vh;
+  background: #2DBD6E;
+}
+
+#footer {
+  min-height: 40vh;
+  background: transparent;
+
 }
 
 .content {
@@ -87,8 +98,8 @@ html {
   font-family: 'Google Sans Flex';
   font-style: normal;
   font-weight: 400;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 60px;
+  line-height: 60px;
   /* or 100% */
   display: flex;
   align-items: flex-end;
@@ -99,8 +110,8 @@ html {
   font-family: 'Google Sans Flex';
   font-style: normal;
   font-weight: 400;
-  font-size: 28px;
-  line-height: 30px;
+  font-size: 40px;
+  line-height: 40px;
   /* or 100% */
   display: flex;
   align-items: flex-end;
@@ -108,15 +119,28 @@ html {
 }
 
 .body-text {
+  max-width: 30ch; */
   font-family: 'Google Sans Flex';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
-  /* or 100% */
   display: flex;
   align-items: flex-end;
   color: #d2cbba;
+}
+
+.body-text-green {
+  max-width: 30ch;
+  font-family: 'Google Sans Flex';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  /* or 100% */
+  display: flex;
+  align-items: flex-end;
+  color: #1D462F;
 }
 
 .body-serif {
@@ -137,6 +161,15 @@ html {
   margin-bottom: 0rem;
 }
 
+.display-text-green {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 82px;
+  color: #1D462F;
+  margin-bottom: 0rem;
+}
+
 .section {
   min-height: 100vh;   /* each section takes at least one full screen */
   display: flex;
@@ -153,12 +186,14 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;   /* two equal columns */
   gap: 2rem;
+  width: 100%;   /* add this line */
+  max-width: 1800px;
 }
 
 /* button */
 
 .cta-button {
-  margin-top: 2rem;
+  margin-top: 1rem;
   box-sizing: border-box;
   position: relative;
   width: 140px;
