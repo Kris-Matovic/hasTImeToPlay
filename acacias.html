@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>503 Acacias — Kristina Matovic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Nav (same as home) -->
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-name">Kristina Matovic</a>
+    <button class="menu-toggle" id="menuToggle" type="button">Menu</button>
+  </nav>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <ul class="menu-list">
+      <li><a href="acacias.html" class="menu-item">503 Acacias</a></li>
+      <li><a href="#contact" class="menu-item">Contact</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- Project content -->
+    <div class="project">
+      <img class="project-hero" src="images/acacias-hero.png" alt="Acacia phylogeny, overview">
+
+      <div class="columns project-intro">
+        <div class="col project-text">
+          <h1 class="project-title">503 Acacias</h1>
+          <p class="body-text">A data exploration of Acacia, Australia's most successful plant genus. Starting with a peer-reviewed family tree of 503 species (Renner et al. 2020), it combines evolutionary history with trait data from AusTraits, including growth form, fire response, and annual rainfall. The underlying question is simple: when did these lineages split, and what did they become?</p>
+          <p class="body-text">The project is a work in progress. So far, the data is best expressed through a timeline tree and a lineages-through-time chart, though additional views are planned. Each visualisation highlights a different aspect of the story. For now, this serves as a proof of concept and an invitation for feedback from people who understand these systems better than I do.</p>
+        </div>
+        <div class="col">
+          <img class="project-side" src="images/acacias-lineages.png" alt="Lineages through time chart">
+        </div>
+      </div>
+
+      <img class="project-tree" src="images/acacias-tree.png" alt="Timeline tree of 503 Acacia species">
+    </div>
+
+    <!-- Footer (same as home) -->
+    <section class="section section-footer" id="contact">
+      <div class="footer-top">
+        <p class="body-text">If you would like to see commercial projects, please get in touch or visit Ravel.</p>
+        <div class="buttons">
+          <a class="btn" href="mailto:hi@kristinamatovic.com">Get in touch</a>
+          <a class="btn" href="https://ravel.com.au" target="_blank" rel="noopener">Visit Ravel</a>
+        </div>
+      </div>
+      <p class="footer-title">Seriously<br>curious.</p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

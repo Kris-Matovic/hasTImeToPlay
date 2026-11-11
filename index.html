@@ -2,69 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kristina — Site</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kristina Matovic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Instrument+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="line-grid-bg" id="lineGrid"></div>
-<script src="script.js"></script>
+  <!-- Interactive background (filled in by script.js) -->
+  <div class="line-grid-bg" id="lineGrid"></div>
 
-<main>
-  <section class="section" id="home">
-    <div class="columns">
-      <div class="column heading">Seriously<br>curious.</div>
-      <div class="column">
-      <div class="body-serif">Multi-discipline communication designer and creative.</div>
-      <div class="body-text">Communication design is where notational and social science go on their best holidays together—one plans the route, the other disrupts it, and somehow they always come back with great photos.</div>
-    </div>
-    </div>
-  </section>
+  <!-- Nav -->
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-name">Kristina Matovic</a>
+    <button class="menu-toggle" id="menuToggle" type="button">Menu</button>
+  </nav>
 
-  <section class="section" id="about">
-    <div class="columns">
-    <div class="column body-text">The point of it all.</div>
-    <div class="column">  
-    <div class="display-text">Let&#8217s create, break, discover and solve things—together.</div>
-    </div>
-    </div>
-  </section>
+  <div class="menu-overlay" id="menuOverlay">
+    <ul class="menu-list">
+      <li><a href="acacias.html" class="menu-item">503 Acacias</a></li>
+      <li><a href="#contact" class="menu-item">Contact</a></li>
+    </ul>
+  </div>
 
-  <section class="section" id="work">
-    <div class="columns">
-      <div class="column body-text-green"> Personal sites are a weird flex—part portfolio, part therapy, part proof. </div>
-      <div class="column display-text-green">  
-      Some of it will become something. Most of it won&#8217t. Either way, it&#8217s worth doing. 
+  <main>
+
+    <!-- 1. Home (dark, lines show through) -->
+    <section class="section section-home" id="home">
+      <div class="columns">
+        <div class="col">
+          <h1 class="home-title">Seriously<br>curious.</h1>
+        </div>
+        <div class="col home-intro">
+          <p class="home-role">Multi-discipline communication designer and creative</p>
+          <p class="body-text">Communication design is where notational and social science go on their best holidays together—one plans the route, the other disrupts it, and somehow they always come back with great photos.</p>
+        </div>
       </div>
-      
-    </div>
-   </section>
-
-   <section class="section" id="cta-section">
-    <div class="columns">
-    <div class="column"></div> 
-      <div class="column">
-          <div class="pull-out">For work with real stakes.</div>
-          <a href="https://ravel.com.au" class="cta-button" target="_blank" rel="noopener">
-        <span class="cta-text">Visit Ravel</span>
-        </a>
-      </div>
-    </div>
     </section>
 
-  <section class="section" id="footer">
-        <div class="columns">
-          <div class="column body-text">Made using VS Code, GitHub, <br>Claude and Figma.  
-          </div> 
-          <div class="column display-text"> 
-            Kristina<br>Matovic</div>
+    <!-- 2. Purpose + recent explorations -->
+    <section class="section section-light" id="explorations">
+      <div class="columns">
+        <div class="col">
+          <p class="label">The purpose of this website:</p>
         </div>
-      
-  </section>
-</main>
+        <div class="col">
+          <p class="statement">To create, break, discover and solve things. Some of it will become something, most of it won’t. Either way, it’s worth doing.</p>
+        </div>
+      </div>
 
+      <hr class="divider">
 
+      <p class="label">Recent explorations:</p>
+
+      <div class="columns project-card">
+        <div class="col">
+          <h2 class="project-title">503 Acacias</h2>
+          <p class="body-text">26 million years of Australian wattles, explored through data visualisation.</p>
+        </div>
+        <div class="col">
+          <a href="acacias.html" class="project-thumb">
+            <img src="images/acacias-thumb.png" alt="503 Acacias – phylogeny visualisation">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Footer / contact -->
+    <section class="section section-footer" id="contact">
+      <div class="footer-top">
+        <p class="body-text">If you would like to see commercial projects, please get in touch or visit Ravel.</p>
+        <div class="buttons">
+          <a class="btn" href="mailto:hi@kristinamatovic.com">Get in touch</a>
+          <a class="btn" href="https://ravel.com.au" target="_blank" rel="noopener">Visit Ravel</a>
+        </div>
+      </div>
+      <p class="footer-title">Seriously<br>curious.</p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,267 +1,311 @@
-html, body {
+/* ==========================================================
+   Kristina Matovic — home page
+   1. Tokens   2. Base   3. Background lines   4. Nav + menu
+   5. Layout   6. Sections   7. Buttons   8. Scroll fade   9. Mobile (keep last)
+   ========================================================== */
+
+/* 1. TOKENS ------------------------------------------------ */
+:root {
+  --green-black: #171C12;
+  --linen:       #F0EDE6;
+  --beige:       #DDD8CB;
+  --off-white:   #F9F8F5;
+  --gold:        #9D845B;
+
+  --line:        #1D462F;   /* resting line colour */
+  --line-active: #2DBD6E;   /* colour once rotated */
+  --cell:        36px;      /* grid cell size — script.js reads this */
+
+  --max-width: 1440px;
+  --gutter: max(10px, calc((100vw - var(--max-width)) / 2));
+}
+
+/* 2. BASE -------------------------------------------------- */
+html { overflow-x: hidden; scroll-behavior: smooth; }
+
+body {
   margin: 0;
-  background: #171C12;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--green-black);
+  color: var(--green-black);
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
 }
 
-html {
-  overflow-x: hidden;
-}
+h1, h2, p { margin: 0; }
+a { color: inherit; }
 
+.label         { font-weight: 500; }
+.body-text     { font-weight: 400; }
+.statement     { font-size: 32px; line-height: 36px; }
+.project-title { font-size: 32px; font-weight: 500; line-height: 1.2; }
+
+/* 3. BACKGROUND LINES -------------------------------------- */
 .line-grid-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 36px);
-  grid-template-rows: repeat(auto-fill, 36px);
   justify-content: center;
   align-content: center;
 }
 
 .line-cell {
-  width: 36px;
-  height: 36px;
+  width: var(--cell);
+  height: var(--cell);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .line {
-  width: 2px;
-  height: 24px;
-  background: #1D462F;
-  border-radius: 0%;
-  transform-origin: center;
+  width: 3px;
+  height: 28px;
+  border-radius: 2px;
+  background: var(--line);
   transform: rotate(0deg);
-  /* easeInOutBack-style overshoot: bounces past target on the way in AND back */
-  transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+              background 0.3s ease;
 }
 
 .line.rotated {
   transform: rotate(90deg);
-  background: #2DBD6E;
+  background: var(--line-active);
 }
 
-/* Real page content sits above the background grid */
-
-#home {
-  min-height: 100vh;
-}
-
-#about {
-  min-height: 40vh;
-  background: #171C12;
-}
-
-#work {
-  min-height: 40vh;
-  background: #d2cbba;
-}
-
-#cta-section {
-  min-height: 20vh;
-  background: #2DBD6E;
-}
-
-#footer {
-  min-height: 40vh;
-  background: transparent;
-
-}
-
-.content {
-  position: relative;
-  z-index: 1;
-  min-height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: left;
-  text-align: left;
-  padding: 2rem;
+/* 4. NAV + MENU -------------------------------------------- */
+.nav-bar {
+  position: fixed;
+  top: 17px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   box-sizing: border-box;
-  pointer-events: none; 
-}
-
-.content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.content p {
-  color: #e4e1da;
-  max-width: 480px;
-}
-
-.heading {
-  font-family: 'Google Sans Flex';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 60px;
-  line-height: 60px;
-  /* or 100% */
-  display: flex;
-  align-items: flex-end;
-  color: #d2cbba;
-}
-
-.pull-out {
-  font-family: 'Google Sans Flex';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  /* or 100% */
-  display: flex;
-  align-items: flex-end;
-  color: #1D462F;
-}
-
-.body-text {
-  max-width: 30ch; 
-  font-family: 'Google Sans Flex';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-  display: flex;
-  align-items: flex-end;
-  color: #d2cbba;
-}
-
-.body-text-green {
-  max-width: 30ch;
-  font-family: 'Google Sans Flex';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 20px;
-  /* or 100% */
-  display: flex;
-  align-items: flex-end;
-  color: #1D462F;
-}
-
-.body-serif {
-  font-family: "Instrument Serif", serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-  color: #d2cbba;
-  margin-bottom: 8rem;
-}
-
-.display-text {
-  font-family: "Instrument Serif", serif;
-  font-weight: 400;
-  font-size: 80px;
-  line-height: 82px;
-  color: #d2cbba;
-  margin-bottom: 0rem;
-}
-
-.display-text-green {
-  font-family: "Instrument Serif", serif;
-  font-weight: 400;
-  font-size: 80px;
-  line-height: 82px;
-  color: #1D462F;
-  margin-bottom: 0rem;
-}
-
-.section {
-  min-height: 100vh;   /* each section takes at least one full screen */
+  width: calc(100% - 20px);
+  max-width: 600px;
+  height: 58px;
+  padding: 10px 10px 10px 15px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  padding: 4rem 2rem;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
-  pointer-events: none; 
+  justify-content: space-between;
+  background: var(--linen);
+  border: 1px solid var(--beige);
+  border-radius: 12px;
 }
 
+.nav-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--green-black);
+  color: var(--linen);
+  font: 400 15px 'Google Sans Flex', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.menu-toggle:hover,
+.menu-toggle.is-open { background: var(--gold); }
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  padding: 200px 10px 0;
+  box-sizing: border-box;
+  background: #544F4C;
+  opacity: .50;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.menu-overlay.is-open { opacity: 1; visibility: visible; }
+
+.menu-list { list-style: none; margin: 0 auto; padding: 0; max-width: var(--max-width); }
+
+.menu-item {
+  position: relative;
+  display: block;
+  padding: 22px 0;
+  text-align: center;
+  font-size: 32px;
+  line-height: 36px;
+  color: var(--linen);
+  text-decoration: none;
+  border-bottom: 1px solid #A5A09D;
+  /* start state: dropped down and invisible. Closing snaps back instantly. */
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.menu-item:hover { font-weight: 500; }
+
+/* The line that spins in when you hover — same trick as the background */
+.menu-item::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 3px;
+  height: 28px;
+  margin-top: -14px;
+  border-radius: 2px;
+  background: var(--line-active);
+  transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.menu-item:hover::before { transform: rotate(90deg); }
+
+/* Opening: items spring up one after another */
+.menu-overlay.is-open .menu-item {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.4s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.menu-overlay.is-open li:nth-child(1) .menu-item { transition-delay: 0.10s; }
+.menu-overlay.is-open li:nth-child(2) .menu-item { transition-delay: 0.20s; }
+.menu-overlay.is-open li:nth-child(3) .menu-item { transition-delay: 0.30s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-item, .menu-overlay.is-open .menu-item { transform: none; transition: opacity 0.2s; }
+}
+
+/* 5. LAYOUT ------------------------------------------------ */
+/* Sections run edge to edge (so backgrounds do too). Side padding
+   keeps the content inside a centred 1440px column. */
+main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass through to the lines */
+
+.section {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 20px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;                 /* let hovers reach the lines */
+}
+
+/* Two equal columns, 10px apart */
 .columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;   /* two equal columns */
-  gap: 2rem;
-  width: 100%;   /* add this line */
-  max-width: 1800px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-/* button */
+/* Things that must stay clickable */
+.project-thumb, .btn, .section a { pointer-events: auto; }
 
-.cta-button {
-  margin-top: 1rem;
-  box-sizing: border-box;
-  position: relative;
-  width: 140px;
-  height: 60px;
-  border: 2px solid#1D462F;
-  border-radius: 5px;
+/* 6. SECTIONS ---------------------------------------------- */
+
+/* Home */
+.section-home { color: var(--linen); justify-content: flex-end; }
+.section-home .columns { align-items: end; }
+
+.home-title { font-size: 36px; font-weight: 500; line-height: 38px; }
+.home-intro { display: flex; flex-direction: column; gap: 98px; }
+.home-role  { font-family: 'Instrument Serif', serif; font-size: 16px; line-height: 18px; }
+
+/* Purpose + explorations */
+.section-light { background: var(--off-white); }
+.section-light .columns:first-child { margin-bottom: 120px; }
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--green-black);
+  margin: 0 calc(var(--gutter) * -1) 20px;   /* full-bleed */
+}
+
+.project-card { margin-top: 120px; }
+.project-card .col { display: flex; flex-direction: column; gap: 10px; }
+
+.project-thumb {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.project-thumb.is-visible:hover { transform: scale(1.02); }   /* .is-visible so it beats the fade-in rule */
+.project-thumb img { display: block; width: 100%; height: auto; }
+
+/* Project page */
+.project {
+  background: var(--off-white);
+  padding: 10px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  pointer-events: auto;                 /* opaque page, so no need to pass hovers through */
+}
+
+.project-hero,
+.project-side,
+.project-tree {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #D9D9D9;                  /* shows until the image loads */
+}
+
+.project-hero { height: 600px; }
+.project-side { aspect-ratio: 497 / 1200; }
+.project-tree { aspect-ratio: 1004 / 2420; }
+
+.project-intro { align-items: start; }
+.project-text .body-text { line-height: 24px; margin-bottom: 20px; }
+.project-text .project-title { margin-bottom: 20px; }
+
+/* Footer */
+.section-footer {
+  background: var(--beige);
+  justify-content: space-between;
+}
+.footer-top { display: flex; flex-direction: column; gap: 10px; max-width: 496px; }
+.footer-title { font-size: 140px; font-weight: 500; line-height: 110px; }
+
+/* 7. BUTTONS ----------------------------------------------- */
+.buttons { display: flex; gap: 6px; }
+
+.btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 146px;
+  height: 38px;
+  border-radius: 6px;
+  background: var(--green-black);
+  color: var(--linen);
+  font-size: 15px;
   text-decoration: none;
-  color: #FFFFFF;
-  cursor: pointer;
-  pointer-events: auto;   /* required since parent sections have pointer-events: none */
-  background: transparent;
-  transition: background 0.3s ease, border-style 0.3s ease, transform 0.3s ease;
+  transition: background 0.2s;
+}
+.btn:hover { background: var(--gold); }
+
+/* 8. FADE IN ON SCROLL ------------------------------------- */
+/* script.js adds .reveal to these elements, then .is-visible as they scroll in */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition-delay: var(--delay, 0s);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-.cta-button:hover {
-  background: #1D462F;
-  border-style: solid;
-  transform: scale(1.05);
-}
-
-.cta-text {
-  font-family: 'Google Sans Flex';
-  font-style: normal;
-  font-size: 18px;
-  font-weight: 500;
-  display: flex;
-  text-align: center;
-  color: #1D462F;
-}
-
-.cta-button:hover .cta-text {
-  color: #d2cbba; /* dark text once the button fills with purple, for contrast */
-}
-
-@media (max-width: 700px) {
-  .columns {
-    grid-template-columns: 1fr;
-  }
-
-  .heading {
-    font-size: 60px;
-    line-height: 60px;
-  }
-
-  .body-text {
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .section {
-    padding: 4rem 1.5rem;
-  }
-
-  .display-text {
-    font-size: 56px;
-    line-height: 56px;
-  }
-
-  .display-text-green {
-    font-size: 56px;
-    line-height: 56px;
-  }
-
-  .pull-out {
-    font-size: 28px;
-    line-height: 28px;
-  }
+/* 9. MOBILE — keep this block LAST ------------------------- */
+@media (max-width: 768px) {
+  .columns { grid-template-columns: 1fr; gap: 20px; }
+  .statement, .project-title { font-size: 26px; line-height: 30px; }
+  .home-intro { gap: 40px; }
+  .section-home .columns { gap: 60px; }
+  .footer-title { font-size: clamp(56px, 18vw, 140px); line-height: 0.8; }
+  .menu-item { font-size: 26px; }
+  .project-hero { height: 300px; }
 }
