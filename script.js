@@ -111,8 +111,9 @@ function buildGrid() {
       cell.addEventListener('mouseleave', off);
 
       // Touch: finger down = hover, finger up = leave.
-      cell.addEventListener('touchstart', (e) => { e.preventDefault(); on(); },  { passive: false });
-      cell.addEventListener('touchend',   (e) => { e.preventDefault(); off(); }, { passive: false });
+      // No preventDefault here, or the grid would block page scrolling.
+      cell.addEventListener('touchstart', on,  { passive: true });
+      cell.addEventListener('touchend',   off, { passive: true });
     }
   }
 }

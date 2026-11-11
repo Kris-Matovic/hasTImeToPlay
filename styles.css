@@ -48,6 +48,7 @@ a { color: inherit; }
   display: grid;
   justify-content: center;
   align-content: center;
+  touch-action: pan-y;                  /* vertical scrolling always allowed */
 }
 
 .line-cell {
