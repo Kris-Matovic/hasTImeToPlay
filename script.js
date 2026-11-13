@@ -146,7 +146,7 @@ if (menuToggle && menuOverlay) {
 const REVEAL = [
   '.home-title', '.home-intro',
   '.section-light .col', '.section-light .label', '.project-thumb',
-  '.project-hero', '.project-text', '.project-side', '.project-tree',
+  '.project-hero', '.project-text', '.about-section .col', '.project-side', '.project-tree',
   '.footer-top', '.footer-title'
 ];
 
