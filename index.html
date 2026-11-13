@@ -6,13 +6,13 @@
   <title>Kristina Matovic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Instrument+Serif&family=Source+Serif+4:ital,opsz@1,8..60&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Interactive background (filled in by script.js) -->
-  <div class="line-grid-bg" id="lineGrid"></div>
+  <!-- Interactive background (filled in by sway-grid.js) -->
+  <canvas class="sway-grid-bg" id="swayGrid" aria-hidden="true"></canvas>
 
   <!-- Nav -->
   <nav class="nav-bar">
@@ -36,8 +36,17 @@
           <h1 class="home-title">Seriously<br>curious.</h1>
         </div>
         <div class="col home-intro">
-          <p class="home-role">Multi-discipline communication designer and creative</p>
-          <p class="body-text">Communication design is where notational and social science go on their best holidays together—one plans the route, the other disrupts it, and somehow they always come back with great photos.</p>
+          <div class="tags" aria-label="Disciplines">
+            <ul class="tag-row">
+              <li class="tag">Brand</li>
+              <li class="tag">Digital experience</li>
+              <li class="tag">Motion</li>
+            </ul>
+            <ul class="tag-row">
+              <li class="tag">Data visualisation</li>
+              <li class="tag">Spatial</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -73,7 +82,7 @@
     <!-- 3. Footer / contact -->
     <section class="section section-footer" id="contact">
       <div class="footer-top">
-        <p class="body-text">If you would like to see commercial projects, please get in touch or visit Ravel.</p>
+        <p class="body-text">This is the free-range work. The commercial projects are at Ravel, or ask me directly.</p>
         <div class="buttons">
           <a class="btn" href="mailto:hi@kristinamatovic.com">Get in touch</a>
           <a class="btn" href="https://ravel.com.au" target="_blank" rel="noopener">Visit Ravel</a>
@@ -84,6 +93,7 @@
 
   </main>
 
+  <script src="sway-grid.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

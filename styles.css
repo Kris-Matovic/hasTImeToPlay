@@ -40,38 +40,15 @@ a { color: inherit; }
 .statement     { font-size: 32px; line-height: 36px; }
 .project-title { font-size: 32px; font-weight: 500; line-height: 1.2; }
 
-/* 3. BACKGROUND LINES -------------------------------------- */
-.line-grid-bg {
+/* 3. BACKGROUND SWAY GRID ---------------------------------- */
+.sway-grid-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
-  display: grid;
-  justify-content: center;
-  align-content: center;
+  display: block;
+  width: 100%;
+  height: 100%;
   touch-action: pan-y;                  /* vertical scrolling always allowed */
-}
-
-.line-cell {
-  width: var(--cell);
-  height: var(--cell);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.line {
-  width: 3px;
-  height: 28px;
-  border-radius: 2px;
-  background: var(--line);
-  transform: rotate(0deg);
-  transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-              background 0.3s ease;
-}
-
-.line.rotated {
-  transform: rotate(90deg);
-  background: var(--line-active);
 }
 
 /* 4. NAV + MENU -------------------------------------------- */
@@ -92,6 +69,13 @@ a { color: inherit; }
   background: var(--linen);
   border: 1px solid var(--beige);
   border-radius: 12px;
+    box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),   /* light catching the top edge */
+    inset 0 -1px 0 rgba(23, 28, 18, 0.06),    /* faint bottom edge */
+    0 1px 2px rgba(161, 165, 158, 0.015),         /* tight contact shadow */
+    0 8px 24px -6px rgba(23, 28, 18, 0.103);   /* soft lift */
+  background: rgba(240, 237, 230, 0.72);
+  backdrop-filter: blur(12px);
 }
 
 .nav-name {
@@ -122,7 +106,7 @@ a { color: inherit; }
   padding: 200px 10px 0;
   box-sizing: border-box;
   background: #544F4C;
-  opacity: .50;
+  opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
 }
@@ -203,12 +187,41 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
 /* 6. SECTIONS ---------------------------------------------- */
 
 /* Home */
-.section-home { color: var(--linen); justify-content: flex-end; }
+.section-home { color: var(--green-black); justify-content: flex-end; }
 .section-home .columns { align-items: end; }
 
 .home-title { font-size: 36px; font-weight: 500; line-height: 38px; }
 .home-intro { display: flex; flex-direction: column; gap: 98px; }
 .home-role  { font-family: 'Instrument Serif', serif; font-size: 16px; line-height: 18px; }
+
+/* Tags */
+.tags { display: flex; flex-direction: column; gap: 4px; }
+
+.tag-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  box-sizing: border-box;
+  height: 30px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-variation-settings: "opsz" 18;   /* the 18pt cut from your Figma file */
+  font-size: 14px;
+  line-height: 1;
+  color: var(--green-black);
+  white-space: nowrap;
+}
 
 /* Purpose + explorations */
 .section-light { background: var(--off-white); }
@@ -229,7 +242,7 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
   overflow: hidden;
   transition: transform 0.3s;
 }
-.project-thumb.is-visible:hover { transform: scale(1.02); }   /* .is-visible so it beats the fade-in rule */
+.project-thumb.is-visible:hover { transform: scale(1.05); }   /* .is-visible so it beats the fade-in rule */
 .project-thumb img { display: block; width: 100%; height: auto; }
 
 /* Project page */
