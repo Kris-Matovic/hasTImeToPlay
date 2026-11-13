@@ -183,3 +183,35 @@ if ('IntersectionObserver' in window) {
     });
   }, { passive: true });
 }
+
+/* ---------- Custom cursor (mouse only) ---------- */
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+  document.body.appendChild(cursor);
+  document.documentElement.classList.add('has-cursor');
+
+  // 1 = glued to the mouse, lower = more lag
+  const FOLLOW = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.25;
+  let x = 0, y = 0, cx = 0, cy = 0, started = false;
+
+  window.addEventListener('pointermove', (e) => {
+    x = e.clientX;
+    y = e.clientY;
+    if (!started) { cx = x; cy = y; started = true; }   // no fly-in from the corner
+    cursor.classList.add('is-visible');
+  }, { passive: true });
+
+  document.documentElement.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
+
+  document.addEventListener('pointerover', (e) => {
+    cursor.classList.toggle('is-hover', !!e.target.closest('a, button'));
+  });
+
+  (function follow() {
+    cx += (x - cx) * FOLLOW;
+    cy += (y - cy) * FOLLOW;
+    cursor.style.transform = `translate(${cx}px, ${cy}px)`;
+    requestAnimationFrame(follow);
+  })();
+}

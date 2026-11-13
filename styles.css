@@ -10,7 +10,9 @@
   --linen:       #F0EDE6;
   --beige:       #DDD8CB;
   --off-white:   #F9F8F5;
-  --gold:        #9D845B;
+  --gold:        #9D845B;   /* menu open */
+  --lime:        #9D845B;   /* menu hover */
+  --orange:      #EB6238;   /* cursor */
 
   --line:        #1D462F;   /* resting line colour */
   --line-active: #2DBD6E;   /* colour once rotated */
@@ -105,7 +107,7 @@ a { color: inherit; }
   z-index: 90;
   padding: 200px 10px 0;
   box-sizing: border-box;
-  background: #544F4C;
+  background: #32302F;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
@@ -123,38 +125,33 @@ a { color: inherit; }
   line-height: 36px;
   color: var(--linen);
   text-decoration: none;
-  border-bottom: 1px solid #A5A09D;
+  border-bottom: 1px solid #544F4C;
   /* start state: dropped down and invisible. Closing snaps back instantly. */
   opacity: 0;
   transform: translateY(48px);
   transition: opacity 0.2s, transform 0.2s;
 }
-.menu-item:hover { font-weight: 500; }
+.menu-item { transition: opacity 0.2s, transform 0.2s, color 0.2s; }
+.menu-item:hover,
+.menu-item:focus-visible {
+  color: var(--lime);
+  letter-spacing: 0.06em;
+  border-bottom-color: var(--lime);
+}
 
 /* The line that spins in when you hover — same trick as the background */
-.menu-item::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  width: 3px;
-  height: 28px;
-  margin-top: -14px;
-  border-radius: 2px;
-  background: var(--line-active);
-  transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-.menu-item:hover::before { transform: rotate(90deg); }
+
 
 /* Opening: items spring up one after another */
 .menu-overlay.is-open .menu-item {
   opacity: 1;
   transform: none;
-  transition: opacity 0.4s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: color 0.2s, letter-spacing 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s,
+              opacity 0.4s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.menu-overlay.is-open li:nth-child(1) .menu-item { transition-delay: 0.10s; }
-.menu-overlay.is-open li:nth-child(2) .menu-item { transition-delay: 0.20s; }
-.menu-overlay.is-open li:nth-child(3) .menu-item { transition-delay: 0.30s; }
+.menu-overlay.is-open li:nth-child(1) .menu-item { transition-delay: 0s, 0s, 0s, 0.10s, 0.10s; }
+.menu-overlay.is-open li:nth-child(2) .menu-item { transition-delay: 0s, 0s, 0s, 0.20s, 0.20s; }
+.menu-overlay.is-open li:nth-child(3) .menu-item { transition-delay: 0s, 0s, 0s, 0.30s, 0.30s; }
 
 @media (prefers-reduced-motion: reduce) {
   .menu-item, .menu-overlay.is-open .menu-item { transform: none; transition: opacity 0.2s; }
@@ -167,7 +164,8 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
 
 .section {
   box-sizing: border-box;
-  min-height: 100vh;
+  min-height: 100vh;    /* fallback for older browsers */
+  min-height: 100svh;   /* visible screen height, with browser toolbars showing */
   padding: 20px var(--gutter);
   display: flex;
   flex-direction: column;
@@ -313,7 +311,37 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* 9. MOBILE — keep this block LAST ------------------------- */
+/* 9. CUSTOM CURSOR ---------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor * { cursor: none; }
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;                /* centres the dot on the pointer */
+  border-radius: 50%;
+  background: var(--orange);
+  pointer-events: none;                 /* never blocks clicks or the sway grid */
+  opacity: 0;
+  transition: width 0.25s, height 0.25s, margin 0.25s, background 0.25s, box-shadow 0.25s, opacity 0.2s;
+}
+.cursor.is-visible { opacity: 1; }
+
+/* Over links and buttons: dot opens into a ring */
+.cursor.is-hover {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--orange);
+}
+
+/* . MOBILE — keep this block LAST ------------------------- */
 @media (max-width: 768px) {
   .columns { grid-template-columns: 1fr; gap: 20px; }
   .statement, .project-title { font-size: 26px; line-height: 30px; }
