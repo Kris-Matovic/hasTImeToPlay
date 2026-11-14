@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Instrument+Serif&family=Source+Serif+4:ital,opsz@1,8..60&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,12 +33,17 @@
 
     <!-- Project content -->
     <div class="project">
-      <img class="project-hero" src="images/acacias-hero.gif" alt="Acacia phylogeny, overview">
+      <img class="project-hero hero-full" src="images/acacias-hero.gif" alt="Acacia phylogeny, overview">
 
       <div class="columns project-intro">
         <div class="col project-text">
+          <ul class="tag-row project-tags" aria-label="Tags">
+            <li class="tag">Data visualisation</li>
+            <li class="tag">Claude</li>
+            <li class="tag">Python</li>
+          </ul>
           <h1 class="project-title">503 Acacias</h1>
-          <p class="body-text">A data exploration of Acacia, Australia's most successful plant genus. Starting with a peer-reviewed family tree of 503 species (Renner et al. 2020), it combines evolutionary history with trait data from AusTraits, including growth form, fire response, and annual rainfall. The underlying question is simple: when did these lineages split, and what did they become?</p>
+          <p class="body-text">A data exploration of Acacia, Australia’s most successful plant genus. Starting with a peer-reviewed family tree of 503 species (Renner et al. 2020), it combines evolutionary history with trait data from AusTraits, including growth form, fire response, and annual rainfall. The underlying question is simple: when did these lineages split, and what did they become?</p>
           <p class="body-text">The project is a work in progress. So far, the data is best expressed through a timeline tree and a lineages-through-time chart, though additional views are planned. Each visualisation highlights a different aspect of the story. For now, this serves as a proof of concept and an invitation for feedback from people who understand these systems better than I do.</p>
         </div>
         <div class="col">
@@ -51,10 +56,21 @@
 
     <!-- Footer (same as home) -->
     <section class="section section-footer" id="contact">
-      <div class="footer-top">
-        <p class="body-text">If you would like to see commercial projects, please get in touch or visit Ravel.</p>
-        <div class="buttons">
-          <a class="btn" href="mailto:hi@kristinamatovic.com">Get in touch</a>
+      <div class="footer-menu">
+        <div class="footer-col">
+          <h3 class="footer-heading">Pages</h3>
+          <a class="footer-link" href="index.html#home">Home</a>
+          <a class="footer-link" href="acacias.html">503 Acacias</a>
+          <a class="footer-link" href="about.html">About</a>
+        </div>
+        <div class="footer-col footer-contact">
+          <h3 class="footer-heading">Contact</h3>
+          <p class="footer-text">If you’d like to chat, or would like to see something else feel free to drop me a line.</p>
+          <a class="btn" href="mailto:hi@kristinamatovic.com">Email me</a>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">See more work</h3>
+          <p class="footer-text">To see more commercial projects, head over to Ravel to take a look.</p>
           <a class="btn" href="https://ravel.com.au" target="_blank" rel="noopener">Visit Ravel</a>
         </div>
       </div>

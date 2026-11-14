@@ -39,7 +39,7 @@ a { color: inherit; }
 
 .label         { font-weight: 500; }
 .body-text     { font-weight: 400; }
-.statement     { font-size: 32px; line-height: 36px; }
+.statement     { font-size: 32px; line-height: 36px; margin-bottom: 20px; }
 .project-title { font-size: 32px; font-weight: 500; line-height: 1.2; }
 
 /* 3. BACKGROUND SWAY GRID ---------------------------------- */
@@ -105,7 +105,7 @@ a { color: inherit; }
   position: fixed;
   inset: 0;
   z-index: 90;
-  padding: 200px 0 0;
+  padding: 200px 0 0;                   /* no side padding, so the lines run edge to edge */
   box-sizing: border-box;
   background: #32302F;
   opacity: 0;
@@ -181,7 +181,7 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
 }
 
 /* Things that must stay clickable */
-.project-thumb, .btn, .section a { pointer-events: auto; }
+.btn, .section a { pointer-events: auto; }
 
 /* 6. SECTIONS ---------------------------------------------- */
 
@@ -228,12 +228,50 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
 
 .divider {
   border: 0;
-  border-top: 1px solid var(--green-black);
+  border-top: 1px solid rgba(23, 28, 18, 0.5);   /* green-black at 50%, same as .rule */
   margin: 0 calc(var(--gutter) * -1) 20px;   /* full-bleed */
 }
 
-.project-card { margin-top: 120px; }
+.project-card {
+  position: relative;
+  margin-top: 120px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(221, 216, 203, 0.2);
+  /* very subtle bevel — same recipe as the nav bar */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),    /* light catching the top edge */
+    inset 0 -1px 0 rgba(23, 28, 18, 0.05),     /* faint bottom edge */
+    0 1px 2px rgba(23, 28, 18, 0.05),          /* tight contact shadow */
+    0 10px 24px -12px rgba(23, 28, 18, 0.12);  /* soft lift */
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover (and keyboard focus): card lifts a touch, the image eases in, the button warms up */
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-2px);
+  background: rgba(221, 216, 203, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(23, 28, 18, 0.06),
+    0 1px 2px rgba(23, 28, 18, 0.06),
+    0 16px 30px -12px rgba(23, 28, 18, 0.18);
+}
+.project-card:hover .btn,
+.project-card:focus-within .btn { background: var(--gold); }
+
+/* Make the whole card clickable: one invisible link covers it */
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 12px;
+}
+.card-link:focus-visible { outline: 2px solid var(--green-black); outline-offset: 2px; }
+
 .project-card .col { display: flex; flex-direction: column; gap: 10px; }
+.project-card .btn { margin-top: auto; align-self: flex-start; }   /* button sits at the bottom of the card */
 
 .project-thumb {
   display: block;
@@ -241,8 +279,8 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
   overflow: hidden;
   transition: transform 0.3s;
 }
-.project-thumb.is-visible:hover { transform: scale(1.05); }   /* .is-visible so it beats the fade-in rule */
-.project-thumb img { display: block; width: 100%; height: auto; }
+.project-thumb img { display: block; width: 100%; height: auto; transition: transform 0.6s ease; }
+.project-card:hover .project-thumb img { transform: scale(1.04); }
 
 /* Project page */
 .project {
@@ -264,18 +302,19 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
   background: #D9D9D9;                  /* shows until the image loads */
 }
 
-.project-hero { height: 600px; }
+.project-hero { height: 500px; }
 .project-side { aspect-ratio: 497 / 1200; }
 .project-tree { aspect-ratio: 1004 / 2420; }
 
 .project-intro { align-items: start; }
 .project-text .body-text { line-height: 24px; margin-bottom: 20px; }
 .project-text .project-title { margin-bottom: 20px; }
+.project-tags { margin-bottom: 30px; }
 
 /* About page header */
 .about-hero {
   display: block;
-  height: 600px;
+  height: 500px;
   background: var(--linen);
   touch-action: pan-y;                  /* vertical scrolling always allowed */
 
@@ -286,7 +325,8 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
 }
 
 /* About page */
-.rule { border: 0; border-top: 1px solid var(--green-black); margin: 0 calc(var(--gutter) * -1); }   /* full-bleed */
+.about-page { gap: 0; }   /* section padding does the spacing, like the home page */
+.rule { border: 0; border-top: 1px solid rgba(23, 28, 18, 0.5); margin: 0 calc(var(--gutter) * -1); }   /* full-bleed */
 
 /* Edge-to-edge header image (About page) */
 .hero-full {
@@ -295,7 +335,7 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
   border-radius: 0;
 }
 
-.about-section { align-items: start; padding: 20px 10px 120px; }
+.about-section { align-items: start; padding: 20px 0 120px; }
 .about-section .label     { margin: 0; font-size: 18px; line-height: 24px; }
 .about-section .body-text { line-height: 24px; margin-bottom: 20px; }
 .about-section .body-text:last-child { margin-bottom: 0; }
@@ -317,24 +357,61 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
 .section-footer {
   background: var(--beige);
   justify-content: space-between;
+  padding-top: 100px;
 }
-.footer-top { display: flex; flex-direction: column; gap: 10px; max-width: 496px; }
+
+.footer-menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.footer-contact { grid-column: 3; }          /* column 2 stays blank */
+
+.footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+.footer-heading {
+  margin: 0;
+  padding-bottom: 8px;
+  font: italic 400 14px/14px 'Source Serif 4', Georgia, serif;
+  font-variation-settings: "opsz" 18;
+  color: var(--green-black);
+}
+
+.footer-text { margin: 0; padding-bottom: 4px; font-size: 16px; line-height: 20px; }
+
+.footer-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  font-size: 15px;
+  color: var(--green-black);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.footer-link:hover { background: var(--gold); color: var(--linen); }
+
 .footer-title { font-size: 140px; font-weight: 500; line-height: 110px; }
 
 /* 7. BUTTONS ----------------------------------------------- */
 .buttons { display: flex; gap: 6px; }
 
 .btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 146px;
   height: 38px;
+  padding: 0 16px;
   border-radius: 6px;
   background: var(--green-black);
   color: var(--linen);
   font-size: 15px;
   text-decoration: none;
+  white-space: nowrap;
   transition: background 0.2s;
 }
 .btn:hover { background: var(--gold); }
@@ -391,7 +468,9 @@ main { position: relative; z-index: 1; pointer-events: none; }  /* hovers pass t
   .section-home .columns { gap: 60px; }
   .footer-title { font-size: clamp(56px, 18vw, 140px); line-height: 0.8; }
   .menu-item { font-size: 26px; }
-  .project-hero { height: 300px; }
+  .project-hero { height: min(300px, 40svh); }   /* never more than 40% of the screen, so the title shows when zoomed */
   .about-hero { height: 400px; }
   .about-section { padding-bottom: 60px; }
+  .footer-menu { grid-template-columns: 1fr; gap: 30px; }
+  .footer-contact { grid-column: auto; }
 }
